@@ -71,7 +71,10 @@ int main() {
 }
 
 void solve(Problem* minesweeper, int id) {
-    printf("Field #%d:\n", id);
+    if (id > 1)
+        printf("\nField #%d:\n", id);
+    else
+        printf("Field #%d:\n", id);
 
     for (int i = 0; i < minesweeper->rows; i++) {
         for (int j = 0; j < minesweeper->columns; j++) {
@@ -81,7 +84,8 @@ void solve(Problem* minesweeper, int id) {
                 printf("%c", minesweeper->minesweeper[i][j]);
             }
         }
-        printf("\n");
+
+        if (i != minesweeper->rows - 1) printf("\n");
     }
 
     printf("\n");
