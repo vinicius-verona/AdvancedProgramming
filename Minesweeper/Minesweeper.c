@@ -20,7 +20,7 @@ typedef struct {
 void solve(Problem* minesweeper, int id);
 
 /**
- * @brief For a giver element of the minesweeper, find the right value.
+ * @brief For a given element of the minesweeper, find the right value.
  *
  * @param minesweeper Problem container
  * @param row Element's row
@@ -32,6 +32,7 @@ int findValue(Problem* minesweeper, int row, int column);
 
 /**
  * @brief Problem: 10189 - Minesweeper
+ * @author Vinicius Gabriel Angelozzi Verona de Resende
  *
  * @ignore
  * Find at: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=29
