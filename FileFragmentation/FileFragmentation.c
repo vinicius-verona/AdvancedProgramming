@@ -36,7 +36,7 @@ int calculateFileSize(char** fragmentations);
 int main() {
     int cases = 0;
 
-    scanf("%d\n\n", &cases);
+    scanf("%d\n", &cases);
 
     for (int i = 0; i < cases; i++) {
         // Read and store fragmented files
@@ -45,7 +45,10 @@ int main() {
         int fragmentCounter = 0;
         size_t fragmentTotalSize = COLS;
 
+        // Read fragment
         while (getline(&fragment, &fragmentTotalSize, stdin) != -1) {
+            if (fragment[0] == '\n' || fragment[0] == '\0') break;
+
             fragmentations[fragmentCounter] = malloc(COLS * sizeof(char));
             strcpy(fragmentations[fragmentCounter], fragment);
             fragmentCounter++;
@@ -56,8 +59,9 @@ int main() {
         int fileSize = calculateFileSize(fragmentations);
 
         printf("Number of files: %d\n", nfiles);
-        printf("File size: %d\n", fileSize);
+        printf("File size: %d\n\n", fileSize);
 
+        // Free memory
         for (int r = 0; r < fragmentCounter; r++) {
             free(fragmentations[r]);
         }
