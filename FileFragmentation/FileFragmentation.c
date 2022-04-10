@@ -86,10 +86,6 @@ int main() {
             fragmentCounter++;
         }
 
-        // for (int j = 0; j < fragmentCounter; j++) {
-        //     printf("- %d len in pattern %s\n", problem->fragments[j]->fragmentSize, problem->fragments[j]->fragment);
-        // }
-
         problem->smallest = malloc(fragmentCounter * sizeof(FileFragment*));
         problem->biggest = malloc(fragmentCounter * sizeof(FileFragment*));
 
@@ -99,7 +95,7 @@ int main() {
 
         // Find pattern
         findBitPattern(problem);
-        printf("%s\n", problem->bitPattern);
+        printf("%s\n\n", problem->bitPattern);
 
         // Free memory
         for (int j = 0; j < fragmentCounter; j++) {
@@ -212,15 +208,16 @@ void findBitPattern(Problem* problem) {
                 }
             }
 
+            if (rightPatternMatch >= problem->numberOfFiles) {
+                problem->bitPattern = rightPattern;
+                return;
+            }
+
             if (leftPatternMatch >= problem->numberOfFiles) {
                 problem->bitPattern = leftPattern;
                 return;
             }
 
-            if (rightPatternMatch >= problem->numberOfFiles) {
-                problem->bitPattern = rightPattern;
-                return;
-            }
             fi++;
         }
 
