@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ROUND 5
+#define ROUND      5
+#define CATEGORIES 13
 
 /**
  * @brief Value of the round for the chosen category.
@@ -41,9 +42,9 @@ int scoreChance(int round[ROUND]) {
  *
  * @param round The numbers of each of the 5 dices
  * @param n The number of occurrence of the same value in order to score.
- * ->[1,2,3,4,5]
+ * ->[3,4,5]
  * @return The sum of each dice if the round matches the category criteria (for
- * 1 <= n <= 4) and 50 (n = 5), and 0 otherwise.
+ * 3 <= n <= 4) and 50 (n = 5), and 0 otherwise.
  */
 int scoreNOAK(int round[ROUND], int n) {
     bool matches = false;
@@ -90,10 +91,10 @@ int scoreStraight(int round[ROUND], int n) {
         if (round[i] == round[i - 1] + 1) sequenceLength += 1;
     }
 
-    if (sequenceLength < 4) return 0;
-    if (n == 5 && sequenceLength == 5)
+    if (sequenceLength < 3) return 0;
+    if (n == 5 && sequenceLength >= 4)
         return 35;
-    else if (n == 4 && sequenceLength == 4)
+    else if (n == 4 && sequenceLength >= 3)
         return 25;
     else
         return 0;
@@ -129,6 +130,19 @@ int scoreFullHouse(int round[ROUND]) {
 }
 
 /**
+ * @brief Create an integer matrix Aij where i,j = 13,13
+ *
+ * @return 13 by 13 integer matrix.
+ */
+void createMatrix(int matrix[13][13]) {
+    for (int i = 0; i < CATEGORIES; i++) {
+        for (int j = 0; j < CATEGORIES; j++) {
+            matrix[i][j] = 0;
+        }
+    }
+}
+
+/**
  * @brief Problem: 10149 - Yahtzee
  * @author Vinicius Gabriel Angelozzi Verona de Resende
  *
@@ -137,7 +151,79 @@ int scoreFullHouse(int round[ROUND]) {
  * https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=30
  */
 int main() {
+    // bool exit = false;
+    int game[CATEGORIES][CATEGORIES];
+    int dices[ROUND] = {0, 0, 0, 0, 0};
+
     do {
+        // printf("1\n");
+        createMatrix(game);
+        // printf("2\n");
+        // printf("3\n");
+
+        for (int i = 0; i < CATEGORIES; i++) {
+            // printf("i = %d\n", i);
+            dices[0] = 0;
+            dices[1] = 0;
+            dices[2] = 0;
+            dices[3] = 0;
+            dices[4] = 0;
+
+            for (int j = 0; j < 5; j++) {
+                if (scanf("%d", &dices[j]) != 1 &&
+                    (dices[j] > 6 || dices[j] < 1)) {
+                    // puts("GOT HERE");
+                    return 0;
+                }
+            }
+
+            printf("dices[%d] = %d\n", 0, dices[0]);
+            printf("dices[%d] = %d\n", 1, dices[1]);
+            printf("dices[%d] = %d\n", 2, dices[2]);
+            printf("dices[%d] = %d\n", 3, dices[3]);
+            printf("dices[%d] = %d\n", 4, dices[4]);
+            puts("\n");
+
+            printf("0,i\n");
+            game[0][i] = sumValues(dices, 1);
+            printf("1,i\n");
+            game[1][i] = sumValues(dices, 2);
+            printf("2,i\n");
+            game[2][i] = sumValues(dices, 3);
+            printf("3,i\n");
+            game[3][i] = sumValues(dices, 4);
+            printf("4,i\n");
+            game[4][i] = sumValues(dices, 5);
+            printf("5,i\n");
+            game[5][i] = sumValues(dices, 6);
+            printf("6,i\n");
+            game[6][i] = scoreChance(dices);
+            printf("7,i\n");
+            game[7][i] = scoreNOAK(dices, 3);
+            printf("8,i\n");
+            game[8][i] = scoreNOAK(dices, 4);
+            printf("9,i\n");
+            game[9][i] = scoreNOAK(dices, 5);
+            printf("10,i\n");
+            game[10][i] = scoreStraight(dices, 4);
+            printf("11,i\n");
+            game[11][i] = scoreStraight(dices, 5);
+            printf("12,i\n");
+            game[12][i] = scoreFullHouse(dices);
+        }
+        // printf("4\n");
+
+        for (int i = 0; i < CATEGORIES; i++) {
+            for (int j = 0; j < CATEGORIES; j++) {
+                printf("%2d ", game[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+        // printf("5\n");
+
+        // solve(game);
+        // if (exit) break;
     } while (true);
 
     return 0;
