@@ -114,7 +114,7 @@ int scoreFullHouse(int round[ROUND]) {
     int valueCounter[6] = {0, 0, 0, 0, 0, 0};
 
     for (int i = 0; i < ROUND; i++) {
-        valueCounter[round[i]] += 1;
+        valueCounter[round[i] - 1] += 1;
     }
 
     for (int i = 0; i < 6; i++) {
@@ -156,13 +156,9 @@ int main() {
     int dices[ROUND] = {0, 0, 0, 0, 0};
 
     do {
-        // printf("1\n");
         createMatrix(game);
-        // printf("2\n");
-        // printf("3\n");
 
         for (int i = 0; i < CATEGORIES; i++) {
-            // printf("i = %d\n", i);
             dices[0] = 0;
             dices[1] = 0;
             dices[2] = 0;
@@ -172,46 +168,24 @@ int main() {
             for (int j = 0; j < 5; j++) {
                 if (scanf("%d", &dices[j]) != 1 &&
                     (dices[j] > 6 || dices[j] < 1)) {
-                    // puts("GOT HERE");
                     return 0;
                 }
             }
 
-            printf("dices[%d] = %d\n", 0, dices[0]);
-            printf("dices[%d] = %d\n", 1, dices[1]);
-            printf("dices[%d] = %d\n", 2, dices[2]);
-            printf("dices[%d] = %d\n", 3, dices[3]);
-            printf("dices[%d] = %d\n", 4, dices[4]);
-            puts("\n");
-
-            printf("0,i\n");
             game[0][i] = sumValues(dices, 1);
-            printf("1,i\n");
             game[1][i] = sumValues(dices, 2);
-            printf("2,i\n");
             game[2][i] = sumValues(dices, 3);
-            printf("3,i\n");
             game[3][i] = sumValues(dices, 4);
-            printf("4,i\n");
             game[4][i] = sumValues(dices, 5);
-            printf("5,i\n");
             game[5][i] = sumValues(dices, 6);
-            printf("6,i\n");
             game[6][i] = scoreChance(dices);
-            printf("7,i\n");
             game[7][i] = scoreNOAK(dices, 3);
-            printf("8,i\n");
             game[8][i] = scoreNOAK(dices, 4);
-            printf("9,i\n");
             game[9][i] = scoreNOAK(dices, 5);
-            printf("10,i\n");
             game[10][i] = scoreStraight(dices, 4);
-            printf("11,i\n");
             game[11][i] = scoreStraight(dices, 5);
-            printf("12,i\n");
             game[12][i] = scoreFullHouse(dices);
         }
-        // printf("4\n");
 
         for (int i = 0; i < CATEGORIES; i++) {
             for (int j = 0; j < CATEGORIES; j++) {
@@ -220,10 +194,6 @@ int main() {
             printf("\n");
         }
         printf("\n");
-        // printf("5\n");
-
-        // solve(game);
-        // if (exit) break;
     } while (true);
 
     return 0;
