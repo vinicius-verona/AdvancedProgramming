@@ -1,9 +1,23 @@
+#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ROUND      5
-#define CATEGORIES 13
+#define ROUND       5
+#define CATEGORIES  13
+#define BONUS       35
+#define LIMIT_BONUS 63
+
+/**
+ * @brief A map to the most valuable categories in order.
+ *
+ */
+int MOST_VALUABLE_CATEGORIES[CATEGORIES] = {6,  5, 4, 3, 2,  1, 10,
+                                            13, 9, 8, 7, 12, 11};
+// int MOST_VALUABLE_CATEGORIES[CATEGORIES] = {10, 13, 9, 8, 7, 6, 12,
+// 11, 5,  4, 3, 2, 1};
+
+int ROUNDS[CATEGORIES][ROUND];
 
 /**
  * @brief Value of the round for the chosen category.
@@ -143,6 +157,101 @@ void createMatrix(int matrix[13][13]) {
 }
 
 /**
+ * @brief Calculate the assignment score.
+ *
+ * @param game The score table
+ * @param assignment - The round assigned to each category
+ * @return Total score for the given assignment
+ */
+int gameScore(int game[CATEGORIES][CATEGORIES], int assignment[CATEGORIES]) {
+    int sum = 0;
+    int firstSix = 0;
+
+    for (int i = 0; i < CATEGORIES; i++) {
+        int round = assignment[i];
+        sum += game[i][round];
+
+        if (i < 6) firstSix += game[i][round];
+    }
+
+    if (firstSix >= LIMIT_BONUS) {
+        sum += BONUS;
+    }
+
+    return sum;
+}
+
+/**
+ * @brief Find the best total score for the given game
+ *
+ * @param game The matrix with the scores for each round and each category
+ */
+void solve(int game[CATEGORIES][CATEGORIES]) {
+    int scores[CATEGORIES] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int roundsAssign[CATEGORIES] = {-1, -1, -1, -1, -1, -1, -1,
+                                    -1, -1, -1, -1, -1, -1};
+
+    // For each of the most valuable categories, check for the maximum value
+    // If the round with the biggest value has not been assigned, assign;
+    // If maximum value is 0, does not assign any round;
+    // If the round with maximum value has already been assigned, look for the
+    // next one;
+    for (int i = 0; i < CATEGORIES; i++) {
+        int category = MOST_VALUABLE_CATEGORIES[i];
+        int max = 0;
+        int maxIdx = -1;
+        int minRoundIdx = -1;
+
+        for (int j = 0; j < CATEGORIES; j++) {
+            if (roundsAssign[j] == -1 && max <= game[category - 1][j]) {
+                if (max == game[category - 1][j]) {
+                    if (scoreChance(ROUNDS[j]) <
+                        scoreChance(ROUNDS[minRoundIdx])) {
+                        minRoundIdx = j;
+                        max = game[category - 1][j];
+                        maxIdx = j;
+                    }
+                } else {
+                    max = game[category - 1][j];
+                    maxIdx = j;
+                }
+            }
+        }
+
+        if (maxIdx >= 0) {
+            roundsAssign[maxIdx] = category;
+            scores[category - 1] = max;
+        }
+    }
+
+    // Sum the scores in order to check if the game gets the bonus score or not.
+    int firstSix = 0;
+    int sum = 0;
+    int bonus = 0;
+    for (int i = 0; i < CATEGORIES; i++) {
+        if (i < 6) firstSix += scores[i];
+        sum += scores[i];
+        printf("%d ", scores[i]);
+    }
+
+    if (firstSix >= LIMIT_BONUS) {
+        bonus = BONUS;
+        sum += BONUS;
+    }
+    printf("%d %d\n", bonus, sum);
+}
+
+void printGame(int game[CATEGORIES][CATEGORIES]) {
+    for (int i = 0; i < CATEGORIES; i++) {
+        for (int j = 0; j < CATEGORIES; j++) {
+            printf("%2d ", game[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+/**
  * @brief Problem: 10149 - Yahtzee
  * @author Vinicius Gabriel Angelozzi Verona de Resende
  *
@@ -172,6 +281,12 @@ int main() {
                 }
             }
 
+            ROUNDS[i][0] = dices[0];
+            ROUNDS[i][1] = dices[1];
+            ROUNDS[i][2] = dices[2];
+            ROUNDS[i][3] = dices[3];
+            ROUNDS[i][4] = dices[4];
+
             game[0][i] = sumValues(dices, 1);
             game[1][i] = sumValues(dices, 2);
             game[2][i] = sumValues(dices, 3);
@@ -187,13 +302,7 @@ int main() {
             game[12][i] = scoreFullHouse(dices);
         }
 
-        for (int i = 0; i < CATEGORIES; i++) {
-            for (int j = 0; j < CATEGORIES; j++) {
-                printf("%2d ", game[i][j]);
-            }
-            printf("\n");
-        }
-        printf("\n");
+        solve(game);
     } while (true);
 
     return 0;
