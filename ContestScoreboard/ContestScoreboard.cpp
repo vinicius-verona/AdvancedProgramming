@@ -37,7 +37,7 @@ typedef struct _contestant {
         } else if (penalty + correct != submission.penalty + submission.correct) {
             return penalty + correct < submission.penalty + submission.correct;
         } else {
-            return order > submission.order;
+            return contestant < submission.contestant;
         }
     }
 } Contestant;
@@ -79,7 +79,7 @@ int main() {
 
             if (read >= 4) {
                 sscanf(buffer, "%d %d %d %c", &contestant, &prob, &time, &status);
-                if (status == 'C') {
+                if (status == 'C' && problems[contestant - 1][prob - 1] != 1) {
                     submissions[contestant - 1].correct += time;
                     submissions[contestant - 1].solved += 1;
                     problems[contestant - 1][prob - 1] = 1;
@@ -130,7 +130,7 @@ int main() {
                        submissions[index].correct + submissions[index].penalty);
             }
         }
-        printf("\n");
+        if (i < cases - 1) printf("\n");
         free(buffer);
     }
 
