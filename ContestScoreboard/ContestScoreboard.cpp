@@ -1,8 +1,5 @@
 // Used references:
 // https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1199
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include <algorithm>
 #include <climits>
@@ -32,13 +29,12 @@ typedef struct _contestant {
      *  - Finally in submission order
      */
     bool operator<(const _contestant& submission) const {
-        if (solved != submission.solved) {
+        if (solved != submission.solved)
             return solved > submission.solved;
-        } else if (penalty + correct != submission.penalty + submission.correct) {
+        else if (penalty + correct != submission.penalty + submission.correct)
             return penalty + correct < submission.penalty + submission.correct;
-        } else {
+        else
             return contestant < submission.contestant;
-        }
     }
 } Contestant;
 
@@ -130,6 +126,7 @@ int main() {
                        submissions[index].correct + submissions[index].penalty);
             }
         }
+
         if (i < cases - 1) printf("\n");
         free(buffer);
     }
