@@ -8,15 +8,6 @@
 #define BONUS       35
 #define LIMIT_BONUS 63
 
-/**
- * @brief A map to the most valuable categories in order.
- *
- */
-int MOST_VALUABLE_CATEGORIES[CATEGORIES] = {6,  5, 4, 3, 2,  1, 10,
-                                            13, 9, 8, 7, 12, 11};
-// int MOST_VALUABLE_CATEGORIES[CATEGORIES] = {10, 13, 9, 8, 7, 6, 12,
-// 11, 5,  4, 3, 2, 1};
-
 int ROUNDS[CATEGORIES][ROUND];
 
 /**
@@ -181,46 +172,35 @@ int gameScore(int game[CATEGORIES][CATEGORIES], int assignment[CATEGORIES]) {
     return sum;
 }
 
-/**
- * @brief Find the best total score for the given game
- *
- * @param game The matrix with the scores for each round and each category
- */
 void solve(int game[CATEGORIES][CATEGORIES]) {
     int scores[CATEGORIES] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int roundsAssign[CATEGORIES] = {-1, -1, -1, -1, -1, -1, -1,
-                                    -1, -1, -1, -1, -1, -1};
+    int assignedCategories[CATEGORIES] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int assignedRounds[CATEGORIES] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    // For each of the most valuable categories, check for the maximum value
-    // If the round with the biggest value has not been assigned, assign;
-    // If maximum value is 0, does not assign any round;
-    // If the round with maximum value has already been assigned, look for the
-    // next one;
+    // 1 - Find the maximum element within the scoreboard
+    // 2 - Add to `scores` the assignment, remove its column and row
+    // 3 - Back to 1
     for (int i = 0; i < CATEGORIES; i++) {
-        int category = MOST_VALUABLE_CATEGORIES[i];
-        int max = 0;
-        int maxIdx = -1;
-        int minRoundIdx = -1;
+        int maxVal = 0;
+        int maxRow = 0;
+        int maxCol = 0;
 
         for (int j = 0; j < CATEGORIES; j++) {
-            if (roundsAssign[j] == -1 && max <= game[category - 1][j]) {
-                if (max == game[category - 1][j]) {
-                    if (scoreChance(ROUNDS[j]) <
-                        scoreChance(ROUNDS[minRoundIdx])) {
-                        minRoundIdx = j;
-                        max = game[category - 1][j];
-                        maxIdx = j;
-                    }
-                } else {
-                    max = game[category - 1][j];
-                    maxIdx = j;
+            for (int k = 0; k < CATEGORIES; k++) {
+                if (assignedCategories[j]) break;
+                if (assignedRounds[k]) continue;
+                if (game[j][k] > maxVal) {
+                    maxVal = game[j][k];
+                    maxRow = j;
+                    maxCol = k;
                 }
             }
         }
 
-        if (maxIdx >= 0) {
-            roundsAssign[maxIdx] = category;
-            scores[category - 1] = max;
+        if (scores[maxRow] == 0) {
+            scores[maxRow] = maxVal;
+            assignedRounds[maxCol] = 1;
+            assignedCategories[maxRow] = 1;
         }
     }
 
@@ -257,7 +237,7 @@ void printGame(int game[CATEGORIES][CATEGORIES]) {
  *
  * @ignore
  * Find at:
- * https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=30
+ * https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=30&page=show_problem&problem=1090
  */
 int main() {
     // bool exit = false;
@@ -275,8 +255,7 @@ int main() {
             dices[4] = 0;
 
             for (int j = 0; j < 5; j++) {
-                if (scanf("%d", &dices[j]) != 1 &&
-                    (dices[j] > 6 || dices[j] < 1)) {
+                if (scanf("%d", &dices[j]) != 1 && (dices[j] > 6 || dices[j] < 1)) {
                     return 0;
                 }
             }
@@ -307,10 +286,3 @@ int main() {
 
     return 0;
 }
-
-/**
- * Aparentemente, para cada categoria
- * é necessário colocar o valor da soma referente
- * à rodada escolhida para receber aquela categoria
- *
- */
