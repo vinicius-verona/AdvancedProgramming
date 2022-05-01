@@ -1,6 +1,6 @@
 # **Programming Contests Challenges**
 
-:united_kingdom: - English
+![United Kingdom](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png "United Kingdom") - English
 
 ## **About**
 
@@ -55,7 +55,7 @@ root
 
 ```
 
-:brazil: - Português
+![Brazil](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png) - Português
 
 ## **Sobre**
 
