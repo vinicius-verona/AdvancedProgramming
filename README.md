@@ -1,6 +1,6 @@
 # **Programming Contests Challenges**
 
-![United Kingdom](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png "United Kingdom") - English
+## ![United Kingdom](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png "United Kingdom") - English
 
 ## **About**
 
@@ -22,40 +22,40 @@
 
 ```
 root
-├─ 🖿 .git
-├─ 🗎 .gitignore
-├─ 🖿 bin
-├─ 🖿 ContestScoreboard
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🖿 FileFragmentation
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🖿 Football
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🗎 LICENSE
-├─ 🖿 Minesweeper
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🗎 README.md
-├─ 🖿 scripts
-├─ 🖿 TollHighway
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-└─ 🖿 Yahtzee
-   ├─ 🖿 input
-   ├─ 🖿 output
-   └─ 🖿 src
+├─ 📁 .git
+├─ 📄 .gitignore
+├─ 📁 bin
+├─ 📁 ContestScoreboard
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📁 FileFragmentation
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📁 Football
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📄 LICENSE
+├─ 📁 Minesweeper
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📄 README.md
+├─ 📁 scripts
+├─ 📁 TollHighway
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+└─ 📁 Yahtzee
+   ├─ 📁 input
+   ├─ 📁 output
+   └─ 📁 src
 
 ```
-
-![Brazil](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png) - Português
+---
+## ![Brazil](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png) - Português
 
 ## **Sobre**
 
@@ -77,35 +77,35 @@ root
 
 ```
 root
-├─ 🖿 .git
-├─ 🗎 .gitignore
-├─ 🖿 bin
-├─ 🖿 ContestScoreboard
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🖿 FileFragmentation
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🖿 Football
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🗎 LICENSE
-├─ 🖿 Minesweeper
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-├─ 🗎 README.md
-├─ 🖿 scripts
-├─ 🖿 TollHighway
-│  ├─ 🖿 input
-│  ├─ 🖿 output
-│  └─ 🖿 src
-└─ 🖿 Yahtzee
-   ├─ 🖿 input
-   ├─ 🖿 output
-   └─ 🖿 src
+├─ 📁 .git
+├─ 📄 .gitignore
+├─ 📁 bin
+├─ 📁 ContestScoreboard
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📁 FileFragmentation
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📁 Football
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📄 LICENSE
+├─ 📁 Minesweeper
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+├─ 📄 README.md
+├─ 📁 scripts
+├─ 📁 TollHighway
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
+└─ 📁 Yahtzee
+   ├─ 📁 input
+   ├─ 📁 output
+   └─ 📁 src
 
 ```
