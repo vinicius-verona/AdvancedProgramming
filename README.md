@@ -15,8 +15,13 @@
   - As the name proposes, the `input` directory contains each input file used to test the challenge.
   - The `output` directory contains each output file generated in each test for that specific challenge.
   - The `src` directory contains the solution to the challenge in either `C/C++` language.
-- The directory `scripts` contains a _`.bat`_ and a _`.sh`_ script in order to execute the challenge. It must be executed with at least one parameter, the name of the challenge (same as the challenge directory). The second parameter is optional, and it is the input file to be executed.
+- The directory `scripts` contains a _`.sh`_ script in order to execute the challenge. It must be executed with at least one parameter, the name of the challenge (same as the challenge directory). The second parameter is optional, and it is the input file to be executed. Some challanges require `-lm` flag in order to be properly compiled. To use the falg, add it after the desired input.
 - The directory `bin` is used to store the binary files generated when the challenge is compiled.
+
+## **Execution Example**
+```
+$ ./execute.sh ArcheologistDilemma 0 -lm
+```  
 
 ## **Project Tree**
 
@@ -25,6 +30,10 @@ root
 ├─ 📁 .git
 ├─ 📄 .gitignore
 ├─ 📁 bin
+├─ 📁 ArcheologistDilemma
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📁 ContestScoreboard
 │  ├─ 📁 input
 │  ├─ 📁 output
@@ -42,8 +51,16 @@ root
 │  ├─ 📁 input
 │  ├─ 📁 output
 │  └─ 📁 src
+├─ 📁 Monocycle
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📄 README.md
 ├─ 📁 scripts
+├─ 📁 Steps
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📁 TollHighway
 │  ├─ 📁 input
 │  ├─ 📁 output
@@ -52,7 +69,6 @@ root
    ├─ 📁 input
    ├─ 📁 output
    └─ 📁 src
-
 ```
 ---
 ## ![Brazil](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png) - Português
@@ -70,7 +86,7 @@ root
   - Como proposto pelo nome, o diretório `input` contém arquivos de entrada utilizados para realizar testes dos desafios.
   - O diretório `output` contém os arquivos resultantes dos testes mencionados acima.
   - O diretório `src` contém a implementação da solução em linguagem `C/C++`.
-- O diretório `scripts` contém um _`script`_ em _`.bat`_ e em _`.sh`_ que recebem como parâmetro de entrada o nome do desafio e o número do arquivo de entrada a ser usado na execução. Para a execução do script, é necessário fornecer o nome do desafio (mesmo nome dos diretórios). Por padrão o arquivo de entrada será o exemplo padrão do desafio.
+- O diretório `scripts` contém um _`script`_ em _`.sh`_ que recebem como parâmetro de entrada o nome do desafio e o número do arquivo de entrada a ser usado na execução. Para a execução do script, é necessário fornecer o nome do desafio (mesmo nome dos diretórios). Por padrão o arquivo de entrada será o exemplo padrão do desafio. Alguns desafios necessitam do parâmetro `-lm` para serem compilados, neste caso, basta adicionar o argumento após o input.
 - O diretório `bin` contém os arquivos binários gerados na compilação do desafio.
 
 ## **Árvore de diretórios**
@@ -80,6 +96,10 @@ root
 ├─ 📁 .git
 ├─ 📄 .gitignore
 ├─ 📁 bin
+├─ 📁 ArcheologistDilemma
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📁 ContestScoreboard
 │  ├─ 📁 input
 │  ├─ 📁 output
@@ -97,8 +117,16 @@ root
 │  ├─ 📁 input
 │  ├─ 📁 output
 │  └─ 📁 src
+├─ 📁 Monocycle
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📄 README.md
 ├─ 📁 scripts
+├─ 📁 Steps
+│  ├─ 📁 input
+│  ├─ 📁 output
+│  └─ 📁 src
 ├─ 📁 TollHighway
 │  ├─ 📁 input
 │  ├─ 📁 output
@@ -107,5 +135,4 @@ root
    ├─ 📁 input
    ├─ 📁 output
    └─ 📁 src
-
 ```
